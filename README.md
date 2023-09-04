@@ -1,3 +1,5 @@
+## [issue-14284](https://github.com/vitejs/vite/issues/14284)
+
 ### Describe the bug
 
 ```

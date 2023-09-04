@@ -1,0 +1,25 @@
+{
+  "name": "vite-starter",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "cross-env DEBUG=vite:deps vite --force",
+    "dev:expected": "cross-env NO_SLOW=1 npm run dev",
+    "prepare": "in-install && patch-package || not-in-install",
+    "patch": "patch-package",
+    "unpatch": "patch-package --reverse"
+  },
+  "dependencies": {
+    "axios": "1.5.0",
+    "element-ui": "2.15.14",
+    "vue": "2.7.14"
+  },
+  "devDependencies": {
+    "cross-env": "7.0.3",
+    "esbuild-sass-plugin": "2.13.0",
+    "in-publish": "2.0.1",
+    "patch-package": "8.0.0",
+    "sass": "1.66.1",
+    "vite": "4.4.9"
+  }
+}

@@ -1,0 +1,47 @@
+diff --git a/node_modules/vite/dist/node/chunks/dep-df561101.js b/node_modules/vite/dist/node/chunks/dep-df561101.js
+index 1bc8674..2603df8 100644
+--- a/node_modules/vite/dist/node/chunks/dep-df561101.js
++++ b/node_modules/vite/dist/node/chunks/dep-df561101.js
+@@ -45413,11 +45413,18 @@ async function createDepsOptimizer(config, server) {
+             return;
+         }
+         const crawlDeps = Object.keys(metadata.discovered);
++        const _debug = () => {
++            const discovered = Object.keys(metadata.discovered);
++            console.log(`metadata.discovered ( size: ${discovered.length} ) : ${depsLogString(discovered)}`)
++        }
++        _debug()
+         // Await for the scan+optimize step running in the background
+         // It normally should be over by the time crawling of user code ended
+         await depsOptimizer.scanProcessing;
++        _debug()
+         if (!isBuild && optimizationResult && !config.optimizeDeps.noDiscovery) {
+             const result = await optimizationResult.result;
++            _debug()
+             optimizationResult = undefined;
+             currentlyProcessing = false;
+             const scanDeps = Object.keys(result.metadata.optimized);
+@@ -45471,7 +45478,11 @@ async function createDepsOptimizer(config, server) {
+     function registerWorkersSource(id) {
+         crawlEndFinder?.registerWorkersSource(id);
+     }
++    let _start
+     function delayDepsOptimizerUntil(id, done) {
++        const now = Date.now()
++        console.log(`call delayDepsOptimizerUntil('${getShortName(id, config.root)}') ${now - (_start || now)}ms after the last`)
++        _start = now
+         if (crawlEndFinder && !depsOptimizer.isOptimizedDepFile(id)) {
+             crawlEndFinder.delayDepsOptimizerUntil(id, done);
+         }
+@@ -45529,7 +45540,11 @@ function setupOnCrawlEnd(onCrawlEnd) {
+             }
+         }
+     }
++    let _start
+     function markIdAsDone(id) {
++        const now = Date.now()
++        console.log(`call markIdAsDone('${id}') ${now - (_start || now)}ms after the last`)
++        _start = now
+         registeredIds.delete(id);
+         checkIfCrawlEndAfterTimeout();
+     }

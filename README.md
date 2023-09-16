@@ -2,6 +2,8 @@
 
 ### Describe the bug
 
+[中文说明](https://github.com/anyesu/blog/issues/46)
+
 ```
 GET http://localhost:5173/node_modules/.vite/deps/element-ui_lib_button.js?v=bc3e4ba5 504 (Outdated Optimize Dep)
 ```
